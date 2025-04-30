@@ -1,16 +1,16 @@
 This project has two contributors:
 
 Anirudh Kaluri: Github Id- anirudhkaluri
-a) Cloud Infrastructure
-b) Development of RAG application
-c) Custom Autoscaling Script
-d) Resource Pressure Model
-
+a) Cloud Infrastructure- ECR, RDS, EKS setup
+b) Development of RAG application and its Dockerization
+c) Custom Autoscaling Scripts
+d) Node and Pod scaling latency estimation
+e) Resource Pressure Model
 
 
 Sagar Dama: Github  Id- sagar110599
 a) Instrumentation using Prometheus
 b) Traffic Simulation using Locust
 c) Machine Learning Models and their Evaluation: LSTM and BiLSTM
-d) Pod and Node scaling Latency estimation
+d) Node and Pod scaling Latency estimation
 e) Final integration of the system
