@@ -1,0 +1,3 @@
+EC2 Instance ssh passphrase:
+anirudhkaluri
+  #response = ollama.chat(model="llama3.2", messages=[{"role": "user", "content": prompt}])

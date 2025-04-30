@@ -1,0 +1,88 @@
+# apiVersion: apps/v1
+# kind: Deployment
+# metadata:
+#   name: ollama-deployment
+# spec:
+#   replicas: 1
+#   selector:
+#     matchLabels:
+#       app: ollama
+#   template:
+#     metadata:
+#       labels:
+#         app: ollama
+#     spec:
+#       containers:
+#       - name: ollama
+#         image: ollama/ollama:latest
+#         ports:
+#         - containerPort: 11434
+# apiVersion: apps/v1
+# kind: Deployment
+# metadata:
+#   name: ollama-deployment
+# spec:
+#   replicas: 1
+#   selector:
+#     matchLabels:
+#       app: ollama
+#   template:
+#     metadata:
+#       labels:
+#         app: ollama
+#     spec:
+#       initContainers:
+#       - name: pull-model
+#         image: ollama/ollama:latest
+#         command: ["ollama", "run", "llama3"]
+#         volumeMounts:
+#         - mountPath: /root/.ollama
+#           name: ollama-models
+
+#       containers:
+#       - name: ollama
+#         image: ollama/ollama:latest
+#         command: ["ollama", "run", "llama3"]
+#         ports:
+#         - containerPort: 11434
+
+#       volumes:
+#       - name: ollama-models
+#         emptyDir: {}
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ollama-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ollama
+  template:
+    metadata:
+      labels:
+        app: ollama
+    spec:
+      containers:
+      - name: ollama
+        image: ollama/ollama:latest
+        command: ["/bin/sh", "-c"]
+        args:
+          - |
+            ollama serve & 
+            sleep 5 && 
+            ollama pull smollm:135m &&  
+            sleep 2 && 
+            ollama run smollm:135m && 
+            tail -f /dev/null
+        ports:
+        - containerPort: 11434
+        resources:
+          requests:
+            cpu: "3"
+            memory: "10Gi"
+          limits:
+            cpu: "4"
+            memory: "14Gi"
+

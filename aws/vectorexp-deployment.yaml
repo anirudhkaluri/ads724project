@@ -1,0 +1,45 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: vectorexp-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: vectorexp
+  template:
+    metadata:
+      labels:
+        app: vectorexp
+    spec:
+      containers:
+        - name: vectorexp-container
+          image: 982534389010.dkr.ecr.us-east-1.amazonaws.com/adsproject:latest
+          ports:
+            - containerPort: 8000
+          env:
+            - name: DJANGO_SECRET_KEY
+              value: django-insecure-01p9#y$@+pv2)=nhg%=8r&tk(m=#!810qjr^ci0+g(9_l#avv%
+            - name: DB_NAME
+              value: vectordb
+            - name: DB_USER
+              value: adsprojectuser
+            - name: DB_PASSWORD
+              value: adsprojectpassword
+            - name: DB_HOST
+              value: ads-project.cuj8wywaqgqr.us-east-1.rds.amazonaws.com
+            - name: DB_PORT
+              value: "5432"
+            - name: OLLAMA_NO_CUDA
+              value: "1"
+            - name: MODEL_NAME
+              value: "smollm:135m"
+            - name: IS_PRODUCTION
+              value: "true"
+      resources:
+          requests:
+            cpu: "3"
+            memory: "10Gi"
+          limits:
+            cpu: "4"
+            memory: "14Gi"

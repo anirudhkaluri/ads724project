@@ -1,0 +1,16 @@
+apiVersion: eksctl.io/v1alpha5
+kind: ClusterConfig
+
+metadata:
+  name: ads-project-eks-cluster
+  region: us-east-1
+  version: "1.32"
+
+nodeGroups:
+
+  - name: ads-project-nodegroup-m6i4x
+    instanceType: m6i.4xlarge
+    desiredCapacity: 6
+    ssh:
+      allow: true
+      publicKeyPath: ~/.ssh/id_rsa.pub

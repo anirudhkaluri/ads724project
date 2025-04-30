@@ -1,0 +1,22 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+django = "*"
+sentence-transformers = "*"
+djangorestframework = "*"
+pgvector = "*"
+langchain = "*"
+ollama = "*"
+psycopg = "*"
+psycopg-binary = "*"
+langchain-postgres = "*"
+langchain-huggingface = "*"
+gunicorn = "*"
+
+[dev-packages]
+
+[requires]
+python_version = "3.12"
